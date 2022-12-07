@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LoginWrapper = styled.div`
+export const LoginWrapper = styled.form`
   font-family: "Open Sans", sans-serif;
   background-color: rgba(14, 9, 24, 0.92);
   display: flex;
@@ -13,7 +13,7 @@ export const LoginWrapper = styled.div`
 `
 const Input = styled.input`
   border: 0;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
   width: 100%;
   padding: 10px;
   margin-top: 50px;
@@ -27,14 +27,13 @@ const Input = styled.input`
   &:focus-visible, &:focus, &:active {
     outline: none;
     border: 0;
-    border-bottom: 1px solid #6100a1;
+    border-bottom: 2px solid #6100a1;
   }
 `
 export const LoginInput = styled(Input)``
 export const PasswordInput = styled(Input)``
 
 export const LoginButton = styled.button`
-  margin-top: 30px;
   padding: 10px;
   width: 100%;
   background-color: #6100a1;
@@ -49,7 +48,11 @@ export const LoginHeader = styled.div`
 export const LoginTitle = styled.h2``
 export const LoginSubtitle = styled.span``
 
-export const LoginError = styled.div`
+export const ErrorMessage = styled.span`
+  color: red;
+`
+
+export const AdditionalInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
