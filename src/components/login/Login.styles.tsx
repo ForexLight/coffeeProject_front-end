@@ -35,10 +35,18 @@ export const PasswordInput = styled(Input)``
 
 export const LoginButton = styled.button`
   padding: 10px;
+  margin-top: 20px;
   width: 100%;
   background-color: #6100a1;
   border: none;
   color: inherit;
+
+  &:disabled {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+
+  }
 `
 export const LoginHeader = styled.div`
   display: flex;
@@ -49,6 +57,8 @@ export const LoginTitle = styled.h2``
 export const LoginSubtitle = styled.span``
 
 export const ErrorMessage = styled.span`
+  font-size: 14px;
+  height: 30px;
   color: red;
 `
 

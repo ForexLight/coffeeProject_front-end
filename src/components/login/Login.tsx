@@ -2,7 +2,7 @@ import React, {Dispatch, useState} from 'react';
 import {
     AdditionalInfo,
     ErrorMessage,
-    LoginButton, LoginError, LoginHeader,
+    LoginButton, LoginHeader,
     LoginInput, LoginSubtitle, LoginTitle,
     LoginWrapper,
     PasswordInput
@@ -14,7 +14,7 @@ const Login = (): JSX.Element => {
     const [password, setPassword] = useState<string>('')
 
     const {handleSubmit, register, formState: {
-        errors
+        errors, isValid
     }, reset} = useForm(
         {
             mode: 'onBlur'
@@ -49,7 +49,7 @@ const Login = (): JSX.Element => {
 
             })} onChange={(e) => onInputChange(e, setLogin)} inputMode='email' placeholder='Email Address'/>
             <ErrorMessage>
-                {errors?.email && <p>{errors?.email?.message || 'some error in email input'}</p>}
+                {errors?.email && <p>{`${errors?.email?.message}` || 'some error in email input'}</p>}
             </ErrorMessage>
             <PasswordInput {...register('password', {
                 required: 'should be field',
@@ -63,9 +63,9 @@ const Login = (): JSX.Element => {
                 }
             })} onChange={(e) => onInputChange(e, setPassword)} placeholder='Password'/>
             <ErrorMessage>
-                {errors?.password && <p>{errors?.password?.message || 'some error in email input'}</p>}
+                {errors?.password && <p>{`${errors?.password?.message}` || 'some error in email input'}</p>}
             </ErrorMessage>
-            <LoginButton>Login</LoginButton>
+            <LoginButton disabled={!isValid}>Login</LoginButton>
             <AdditionalInfo><span>If you dont remember password <br /> please contact to administrator</span></AdditionalInfo>
         </LoginWrapper>
     );
