@@ -1,20 +1,57 @@
 import styled from "styled-components";
 
 export const LoginWrapper = styled.div`
-  background-color: red;
+  font-family: "Open Sans", sans-serif;
+  background-color: rgba(14, 9, 24, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 50px;
+  padding: 0 50px;
+  color:white;
+  height: 100vh;
 `
+const Input = styled.input`
+  border: 0;
+  border-bottom: 1px solid white;
+  width: 100%;
+  padding: 10px;
+  margin-top: 50px;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
 
-export const LoginInput = styled.input``
-export const PasswordInput = styled.input``
+  &::placeholder, &:placeholder-shown {
+    color: white;
+  }
 
-export const LoginButton = styled.button``
-export const LoginHeader = styled.div``
+  &:focus-visible, &:focus, &:active {
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid #6100a1;
+  }
+`
+export const LoginInput = styled(Input)``
+export const PasswordInput = styled(Input)``
+
+export const LoginButton = styled.button`
+  margin-top: 30px;
+  padding: 10px;
+  width: 100%;
+  background-color: #6100a1;
+  border: none;
+  color: inherit;
+`
+export const LoginHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  `
 export const LoginTitle = styled.h2``
 export const LoginSubtitle = styled.span``
 
-export const LoginError = styled.span``
+export const LoginError = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+`

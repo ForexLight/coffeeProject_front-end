@@ -25,7 +25,7 @@ const Login = (): JSX.Element => {
             <LoginInput onChange={(e) => onInputChange(e, setLogin)} inputMode='email' placeholder='Email Address'/>
             <PasswordInput onChange={(e) => onInputChange(e, setPassword)} placeholder='Password'/>
             <LoginButton>Login</LoginButton>
-            <LoginError>If you dont remember password please contact to administrator</LoginError>
+            <LoginError><span>If you dont remember password <br /> please contact to administrator</span></LoginError>
         </LoginWrapper>
     );
 };
