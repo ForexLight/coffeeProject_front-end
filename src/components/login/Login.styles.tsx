@@ -1,14 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const LoginWrapper = styled.form`
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   background-color: rgba(14, 9, 24, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 0 50px;
-  color:white;
+  color: white;
   height: 100vh;
 `
 const Input = styled.input`
@@ -20,11 +20,14 @@ const Input = styled.input`
   background-color: rgba(0, 0, 0, 0);
   color: white;
 
-  &::placeholder, &:placeholder-shown {
+  &::placeholder,
+  &:placeholder-shown {
     color: white;
   }
 
-  &:focus-visible, &:focus, &:active {
+  &:focus-visible,
+  &:focus,
+  &:active {
     outline: none;
     border: 0;
     border-bottom: 2px solid #6100a1;
@@ -45,14 +48,13 @@ export const LoginButton = styled.button`
     border: 1px solid #999999;
     background-color: #cccccc;
     color: #666666;
-
   }
 `
 export const LoginHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  `
+`
 export const LoginTitle = styled.h2``
 export const LoginSubtitle = styled.span``
 
