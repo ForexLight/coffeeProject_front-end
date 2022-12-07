@@ -9,6 +9,10 @@ type TokenType = {
 }
 
 export default class Services {
+
+    async getUsers():Promise<any> {
+        return api.get('users').then(response => response.data)
+    }
     async login(data:UserDetails):Promise<TokenType> {
         return api.post('auth/login', data).then((response) => {
             return response.data;

@@ -18,7 +18,6 @@ const router = createBrowserRouter([
     element: (
       <div>
         <App />
-        <Link to="about">About</Link>
       </div>
     ),
   },
