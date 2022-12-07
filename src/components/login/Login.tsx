@@ -11,6 +11,9 @@ import {
   PasswordInput,
 } from './Login.styles'
 import { useForm } from 'react-hook-form'
+import Services, { UserDetails } from '../../API/service'
+
+const service = new Services()
 
 const Login = (): JSX.Element => {
   const [login, setLogin] = useState<string>('')
@@ -32,8 +35,10 @@ const Login = (): JSX.Element => {
   ) => {
     setter(e.target.value)
   }
-  const onSubmit = (data: any) => {
-    console.log(JSON.stringify(data))
+  const onSubmit = async (data: any) => {
+    const token = await service.login(data)
+      console.log(token)
+    window.localStorage.setItem('token', `Bearer ${token.token}`)
     reset()
   }
 
