@@ -4,22 +4,19 @@ import App from './App'
 import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom'
 import Login from './components/login'
 import { createGlobalStyle } from 'styled-components'
+import {Provider} from 'react-redux'
+import { store } from './store'
 
 import normalize from 'styled-normalize'
 
 const GlobalStyle = createGlobalStyle`
-  
   ${normalize}
 `
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <div>
-        <App />
-      </div>
-    ),
+    element: <App />,
   },
   {
     path: 'auth',
@@ -29,7 +26,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <GlobalStyle />
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <GlobalStyle />
+      <RouterProvider router={router} />
+    </Provider>
+
   </React.StrictMode>,
 )

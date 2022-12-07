@@ -12,12 +12,18 @@ import {
 } from './Login.styles'
 import { useForm } from 'react-hook-form'
 import Services, { UserDetails } from '../../API/service'
+import jwtDecode from 'jwt-decode'
+import { useAppDispatch } from '../../hooks/redux_hooks'
+import { updateUser } from '../../store/slices/userSlice'
+import { updateUserRole } from '../../store/slices/userRoleSlice'
 
 const service = new Services()
 
 const Login = (): JSX.Element => {
   const [login, setLogin] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+
+    const dispatcher = useAppDispatch()
 
   const {
     handleSubmit,
@@ -28,7 +34,6 @@ const Login = (): JSX.Element => {
     mode: 'onBlur',
   })
 
-  console.log({ login, password })
   const onInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     setter: Dispatch<string>,
@@ -37,9 +42,15 @@ const Login = (): JSX.Element => {
   }
   const onSubmit = async (data: any) => {
     const token = await service.login(data)
-      console.log(token)
+      const newData = jwtDecode(token.token)
+      console.log( newData)
+      if(newData){
+          // @ts-ignore
+          dispatcher(updateUser({ id: newData.id, email: newData.email, iat: newData.iat, exp: newData.exp}))
+          // @ts-ignore
+          dispatcher(updateUserRole(newData.roles))
+      }
     window.localStorage.setItem('token', `Bearer ${token.token}`)
-    reset()
   }
 
   return (
