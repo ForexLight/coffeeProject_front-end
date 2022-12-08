@@ -7,6 +7,7 @@ import normalize from 'styled-normalize'
 import Login from './components/login'
 import Header from './components/layout/Header/Header'
 import WorkerPage from './components/workerPage/WorkerPage'
+import GoodsPage from './components/goodsPage/goodsPage'
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
   },
   {
     path: 'worker/:value',
-    element: <div>worker value</div>,
+    element: <GoodsPage />,
   },
 ])
 
