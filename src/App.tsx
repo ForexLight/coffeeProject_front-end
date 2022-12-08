@@ -1,17 +1,41 @@
-import styled from 'styled-components'
-import Services from './API/service'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import React from 'react'
+import { useAppSelector } from './hooks/redux_hooks'
+import { darkTheme, myTheme } from './styled/themes'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import normalize from 'styled-normalize'
+import Login from './components/login'
+import Header from './components/layout/Header/Header'
 
-const service = new Services()
-
-const AppWrapper = styled.div`
-  background-color: red;
-`
-function App() {
-
-  const clickHandler = async () => {
-    await service.getUsers().then(res => console.log(res))
+const GlobalStyle = createGlobalStyle`
+  ${normalize}
+  body {
+    transition: background 0.4s;
+    font-family: 'Open Sans',sans-serif;
   }
-  return <AppWrapper onClick={clickHandler}>HELLO WORLD</AppWrapper>
+`
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+  },
+  {
+    path: 'auth',
+    element: <Login />,
+  },
+])
+
+function App() {
+  const isDarkTheme = useAppSelector((state) => state.theme.dark)
+
+  return (
+    <ThemeProvider theme={isDarkTheme ? darkTheme : myTheme}>
+      <GlobalStyle />
+      <Header />
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  )
 }
 
 export default App

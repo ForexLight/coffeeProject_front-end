@@ -1,15 +1,14 @@
-import styled from 'styled-components'
+import styled, { DefaultTheme } from 'styled-components'
 
 export const LoginWrapper = styled.form`
-  font-family: 'Open Sans', sans-serif;
-  background-color: rgba(14, 9, 24, 0.92);
+  background-color: ${(props) => props.theme.colors.main};
+  color: ${(props) => props.theme.colors.text};
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 0 50px;
-  color: white;
-  height: 100vh;
+  height: calc(95vh - 40px);
 `
 const Input = styled.input`
   border: 0;
@@ -30,17 +29,18 @@ const Input = styled.input`
   &:active {
     outline: none;
     border: 0;
-    border-bottom: 2px solid #6100a1;
+    border-bottom: 2px solid ${(props) => props.theme.colors.btn};
   }
 `
 export const LoginInput = styled(Input)``
 export const PasswordInput = styled(Input)``
 
 export const LoginButton = styled.button`
+  border-radius: ${(props) => props.theme.borderRadius};
   padding: 10px;
   margin-top: 20px;
   width: 100%;
-  background-color: #6100a1;
+  background-color: ${(props) => props.theme.colors.btn};
   border: none;
   color: inherit;
 

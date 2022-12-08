@@ -16,13 +16,15 @@ import jwtDecode from 'jwt-decode'
 import { useAppDispatch } from '../../hooks/redux_hooks'
 import { updateUser } from '../../store/slices/userSlice'
 import { updateUserRole } from '../../store/slices/userRoleSlice'
+import { useTheme } from 'styled-components'
 
 const service = new Services()
 
 const Login = (): JSX.Element => {
-  const [login, setLogin] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+    const [login, setLogin] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
 
+    const theme = useTheme()
     const dispatcher = useAppDispatch()
 
   const {
@@ -101,7 +103,7 @@ const Login = (): JSX.Element => {
           <p>{`${errors?.password?.message}` || 'some error in email input'}</p>
         )}
       </ErrorMessage>
-      <LoginButton disabled={!isValid}>Login</LoginButton>
+      <LoginButton disabled={!isValid} theme={theme}>Login</LoginButton>
       <AdditionalInfo>
         <span>
           If you dont remember password <br /> please contact to administrator

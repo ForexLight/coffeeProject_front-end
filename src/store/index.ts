@@ -1,10 +1,12 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import userReducer from './slices/userSlice'
 import userRoleReducer  from './slices/userRoleSlice'
+import themeReducer  from './slices/themeSlice'
 
 const rootReducer = combineReducers({
     user: userReducer,
-    role: userRoleReducer
+    role: userRoleReducer,
+    theme: themeReducer
 })
 
 export const store = configureStore({
