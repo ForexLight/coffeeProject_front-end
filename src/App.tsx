@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import normalize from 'styled-normalize'
 import Login from './components/login'
 import Header from './components/layout/Header/Header'
+import WorkerPage from './components/workerPage/WorkerPage'
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -23,6 +24,14 @@ const router = createBrowserRouter([
   {
     path: 'auth',
     element: <Login />,
+  },
+  {
+    path: 'worker',
+    element: <WorkerPage />,
+  },
+  {
+    path: 'worker/:value',
+    element: <div>worker value</div>,
   },
 ])
 

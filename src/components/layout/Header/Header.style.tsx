@@ -7,7 +7,7 @@ export const HeaderWrapper = styled.header`
   padding: 20px;
   background-color: ${(props) => props.theme.colors.main};
   color: ${(props) => props.theme.colors.text};
-  height: 5vh;
+  height: 50px;
 `
 export const HeaderLogo = styled.div``
 
@@ -38,7 +38,7 @@ export const HeaderThemeSwitcher = styled.button<{ isDarkTheme: boolean }>`
       color: white;
       padding-left: 4px;
       transform: ${(props) =>
-        props.isDarkTheme ? 'translateY(0)' : 'translateY(40px)'};
+        props.isDarkTheme ? 'translateY(0)' : 'translateY(45px)'};
     }
   }
 `

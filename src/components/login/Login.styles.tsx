@@ -1,5 +1,5 @@
 import styled, { DefaultTheme } from 'styled-components'
-
+import { heights } from '../../styled/css.vars'
 export const LoginWrapper = styled.form`
   background-color: ${(props) => props.theme.colors.main};
   color: ${(props) => props.theme.colors.text};
@@ -8,7 +8,7 @@ export const LoginWrapper = styled.form`
   justify-content: center;
   flex-direction: column;
   padding: 0 50px;
-  height: calc(95vh - 40px);
+  height: ${heights.withoutHeader};
 `
 const Input = styled.input`
   border: 0;
