@@ -9,7 +9,9 @@ const WorkerWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `
-const GoodsHeader = styled.h2``
+const GoodsHeader = styled.h2`
+  margin: 0;
+`
 
 const GoodsSection = styled.section`
   width: 100%;
@@ -37,10 +39,19 @@ const GoodsData = styled.div`
   height: 100px;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #000000;
   border-radius: inherit;
+  h3 {
+    padding: 0;
+    margin: 0;
+  }
+  span {
+    align-self: flex-end;
+    padding-right: 20px;
+  }
 `
 
 const GoodsImg = styled.div<{ img: any }>`

@@ -6,6 +6,8 @@ import GoodsItem from './components/GoodsItem'
 import styled from 'styled-components'
 import { heights } from '../../styled/css.vars'
 import { GoodsHeader, GoodsSection } from './goodsPage.style'
+import usePagination from '../../hooks/usePagination'
+import PaginationController from '../pagination/PaginationController'
 
 const GoodsPageWrapper = styled.div`
   background-color: ${(props) => props.theme.colors.main};
@@ -19,19 +21,40 @@ const GoodsPageWrapper = styled.div`
 const GoodsPage = () => {
   const params = String(useParams().value)
   let data = useAppSelector((state) => state.goods)
+  const resArr: JSX.Element[] = []
   const res =
     params != undefined &&
     useAppSelector((state) => state.goods)[params as keyof typeof data].map(
-      (i) => <GoodsItem key={i.id} {...i} />,
+      (i) => {
+        resArr.push(<GoodsItem key={i.id} {...i} />)
+      },
     )
-
-  console.log(res)
+  const {
+    firstContentIndex,
+    lastContentIndex,
+    nextPage,
+    prevPage,
+    page,
+    setPage,
+    totalPages,
+  } = usePagination({
+    contentPerPage: 6,
+    count: resArr.length,
+  })
 
   return (
     <GoodsPageWrapper>
       <GoodsHeader>{params}</GoodsHeader>
-
-      <GoodsSection>{res}</GoodsSection>
+      <GoodsSection>
+        {resArr.slice(firstContentIndex, lastContentIndex)}
+      </GoodsSection>
+      <PaginationController
+        nextPage={nextPage}
+        page={page}
+        prevPage={prevPage}
+        setPage={setPage}
+        totalPages={totalPages}
+      />
     </GoodsPageWrapper>
   )
 }

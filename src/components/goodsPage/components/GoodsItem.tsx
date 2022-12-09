@@ -11,7 +11,10 @@ const GoodsItem = ({ id, name, img, price }: Goods) => {
   return (
     <GoodsItemWrapper>
       <GoodsImg img={img}></GoodsImg>
-      <GoodsData></GoodsData>
+      <GoodsData>
+        <h3>{name}</h3>
+        <span>{price} ₴</span>
+      </GoodsData>
     </GoodsItemWrapper>
   )
 }
