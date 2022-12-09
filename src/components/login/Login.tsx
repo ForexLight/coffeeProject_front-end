@@ -1,4 +1,4 @@
-import React, { Dispatch, useState } from 'react'
+import React from 'react'
 import {
   AdditionalInfo,
   ErrorMessage,
@@ -11,48 +11,49 @@ import {
   PasswordInput,
 } from './Login.styles'
 import { useForm } from 'react-hook-form'
-import Services, { UserDetails } from '../../API/service'
+import Services from '../../API/service'
 import jwtDecode from 'jwt-decode'
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/redux_hooks'
 import { updateUser } from '../../store/slices/userSlice'
 import { updateUserRole } from '../../store/slices/userRoleSlice'
 import { useTheme } from 'styled-components'
+import { Role, UserState } from '../../store/slices/types/types'
 
 const service = new Services()
 
 const Login = (): JSX.Element => {
-    const [login, setLogin] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
-
-    const theme = useTheme()
-    const dispatcher = useAppDispatch()
+  const navigate = useNavigate()
+  const theme = useTheme()
+  const dispatcher = useAppDispatch()
 
   const {
     handleSubmit,
     register,
     formState: { errors, isValid },
-    reset,
   } = useForm({
     mode: 'onBlur',
   })
 
-  const onInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    setter: Dispatch<string>,
-  ) => {
-    setter(e.target.value)
-  }
   const onSubmit = async (data: any) => {
     const token = await service.login(data)
-      const newData = jwtDecode(token.token)
-      console.log( newData)
-      if(newData){
-          // @ts-ignore
-          dispatcher(updateUser({ id: newData.id, email: newData.email, iat: newData.iat, exp: newData.exp}))
-          // @ts-ignore
-          dispatcher(updateUserRole(newData.roles))
-      }
+    const newData = jwtDecode(token.token) as UserState & {
+      roles: Role[]
+    }
+    console.log(newData)
+    if (newData) {
+      dispatcher(
+        updateUser({
+          id: newData.id,
+          email: newData.email,
+          iat: newData.iat,
+          exp: newData.exp,
+        }),
+      )
+      dispatcher(updateUserRole(newData.roles))
+    }
     window.localStorage.setItem('token', `Bearer ${token.token}`)
+    navigate('/', { replace: true })
   }
 
   return (
@@ -73,7 +74,6 @@ const Login = (): JSX.Element => {
             message: 'email typo error',
           },
         })}
-        onChange={(e) => onInputChange(e, setLogin)}
         inputMode="email"
         placeholder="Email Address"
       />
@@ -95,7 +95,6 @@ const Login = (): JSX.Element => {
               'must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number',
           },
         })}
-        onChange={(e) => onInputChange(e, setPassword)}
         placeholder="Password"
       />
       <ErrorMessage>
@@ -103,7 +102,9 @@ const Login = (): JSX.Element => {
           <p>{`${errors?.password?.message}` || 'some error in email input'}</p>
         )}
       </ErrorMessage>
-      <LoginButton disabled={!isValid} theme={theme}>Login</LoginButton>
+      <LoginButton disabled={!isValid} theme={theme}>
+        Login
+      </LoginButton>
       <AdditionalInfo>
         <span>
           If you dont remember password <br /> please contact to administrator

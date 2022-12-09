@@ -4,6 +4,7 @@ import userRoleReducer from './slices/userRoleSlice'
 import themeReducer from './slices/themeSlice'
 import categoryReducer from './slices/categorySlice'
 import goodsReducer from './slices/goodsSlice'
+import authReducer from './slices/authSlice'
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   theme: themeReducer,
   category: categoryReducer,
   goods: goodsReducer,
+  auth: authReducer,
 })
 
 export const store = configureStore({

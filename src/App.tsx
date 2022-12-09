@@ -1,13 +1,14 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { darkTheme, myTheme } from './styled/themes'
+import normalize from 'styled-normalize'
+
 import React from 'react'
 import { useAppSelector } from './hooks/redux_hooks'
-import { darkTheme, myTheme } from './styled/themes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import normalize from 'styled-normalize'
-import Login from './components/login'
-import Header from './components/layout/Header/Header'
-import WorkerPage from './components/workerPage/WorkerPage'
-import GoodsPage from './components/goodsPage/goodsPage'
+
+import { Login } from './components/login'
+import { Header } from './components/layout/Header'
+import { router } from './routes'
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -16,25 +17,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans',sans-serif;
   }
 `
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-  },
-  {
-    path: 'auth',
-    element: <Login />,
-  },
-  {
-    path: 'worker',
-    element: <WorkerPage />,
-  },
-  {
-    path: 'worker/:value',
-    element: <GoodsPage />,
-  },
-])
 
 function App() {
   const isDarkTheme = useAppSelector((state) => state.theme.dark)
