@@ -44,6 +44,7 @@ export const HeaderThemeSwitcher = styled.button<{ isDarkTheme: boolean }>`
 `
 
 const HeaderBucketBtn = styled.button`
+  margin-right: 10px;
   border: none;
   background-color: ${(props) => props.theme.colors.changeThemeBtn};
   display: flex;
@@ -64,8 +65,5 @@ const HeaderBucketBtn = styled.button`
 
 const HeaderButtonContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 120px;
 `
 export { HeaderBucketBtn, HeaderButtonContainer }

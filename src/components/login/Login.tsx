@@ -19,6 +19,7 @@ import { updateUser } from '../../store/slices/userSlice'
 import { updateUserRole } from '../../store/slices/userRoleSlice'
 import { useTheme } from 'styled-components'
 import { Role, UserState } from '../../store/slices/types/types'
+import { updateStatus } from '../../store/slices/authSlice'
 
 const service = new Services()
 
@@ -52,7 +53,11 @@ const Login = (): JSX.Element => {
       )
       dispatcher(updateUserRole(newData.roles))
     }
+
+    dispatcher(updateStatus(true))
+
     window.localStorage.setItem('token', `Bearer ${token.token}`)
+
     navigate('/', { replace: true })
   }
 
