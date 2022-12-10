@@ -42,3 +42,30 @@ export const HeaderThemeSwitcher = styled.button<{ isDarkTheme: boolean }>`
     }
   }
 `
+
+const HeaderBucketBtn = styled.button`
+  border: none;
+  background-color: ${(props) => props.theme.colors.changeThemeBtn};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: ${(props) => props.theme.borderRadius};
+  overflow: hidden;
+  height: 50px;
+  width: 50px;
+  color: ${(props) => props.theme.colors.text};
+  svg {
+    padding-right: 2px;
+    width: 35px;
+    height: 35px;
+  }
+`
+
+const HeaderButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 120px;
+`
+export { HeaderBucketBtn, HeaderButtonContainer }
