@@ -5,6 +5,7 @@ import App from '../App'
 import { createBrowserRouter, redirect } from 'react-router-dom'
 import MainDistributor from './MainDistributor/MainDistributor'
 import { useAppSelector } from '../hooks/redux_hooks'
+import { CartPage } from '../components/cartPage'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: 'worker/:value',
     element: <GoodsPage />,
+  },
+  {
+    path: 'worker/cart',
+    element: <CartPage />,
   },
 ])
 export default router
