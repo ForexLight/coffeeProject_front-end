@@ -6,7 +6,7 @@ export type PageIndicatorType = {
 
 const PaginationContainer = styled.nav`
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
 `
 const PagesController = styled.ul`
   text-decoration: none;
@@ -20,8 +20,8 @@ const PagesController = styled.ul`
 const PageIndicator = styled.li<PageIndicatorType>`
   display: flex;
   align-items: center;
-  min-width: 35px;
-  min-height: 35px;
+  min-width: 40px;
+  min-height: 40px;
   margin: 0 5px;
   justify-content: center;
   background-color: ${(props) =>

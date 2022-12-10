@@ -4,7 +4,9 @@ type Theme = {
   dark: boolean
 }
 
-const initialState: Theme = { dark: false }
+const initialState: Theme = {
+  dark: localStorage.getItem('isDarkTheme') === 'true',
+}
 
 export const themeSlice = createSlice({
   name: 'theme',

@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Login } from './components/login'
 import { Header } from './components/layout/Header'
 import { router } from './routes'
+import login from './components/login/Login'
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -20,7 +21,6 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const isDarkTheme = useAppSelector((state) => state.theme.dark)
-
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : myTheme}>
       <GlobalStyle />

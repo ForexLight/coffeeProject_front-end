@@ -7,9 +7,10 @@ import { HeaderLogo, HeaderThemeSwitcher, HeaderWrapper } from './Header.style'
 const Header = () => {
   const isDarkTheme = useAppSelector((state) => state.theme.dark)
   const dispatcher = useAppDispatch()
-
+  console.log(isDarkTheme)
   const switchTheme = (): void => {
     dispatcher(updateTheme(!isDarkTheme))
+    localStorage.setItem('isDarkTheme', String(!isDarkTheme))
   }
 
   return (

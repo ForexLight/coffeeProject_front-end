@@ -8,6 +8,7 @@ const WorkerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `
 const GoodsHeader = styled.h2`
   margin: 0;
@@ -15,14 +16,15 @@ const GoodsHeader = styled.h2`
 
 const GoodsSection = styled.section`
   width: 100%;
-  max-height: 100%;
+  height: 85%;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
 `
 
 const GoodsItemWrapper = styled.div`
-  height: 200px;
+  height: 30%;
   width: 45%;
   border-radius: ${(props) => props.theme.borderRadius};
   background-color: #fff;
@@ -36,7 +38,7 @@ const GoodsItemWrapper = styled.div`
   }
 `
 const GoodsData = styled.div`
-  height: 100px;
+  height: 50%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -56,7 +58,7 @@ const GoodsData = styled.div`
 
 const GoodsImg = styled.div<{ img: any }>`
   width: 100%;
-  height: 100px;
+  height: 50%;
   background: url(${(props) => props.img}) no-repeat;
   background-size: 100% 100px;
 `
