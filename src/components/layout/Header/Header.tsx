@@ -9,11 +9,13 @@ import {
   HeaderThemeSwitcher,
   HeaderWrapper,
 } from './Header.style'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 const Header = () => {
   const isDarkTheme = useAppSelector((state) => state.theme.dark)
   const isAuth = useAppSelector((state) => state.auth.isAuth)
   const dispatcher = useAppDispatch()
+  const navigate = useNavigate()
   console.log(isDarkTheme)
   const switchTheme = (): void => {
     dispatcher(updateTheme(!isDarkTheme))
@@ -25,7 +27,9 @@ const Header = () => {
       <HeaderLogo>LOGO</HeaderLogo>
       <HeaderButtonContainer>
         {isAuth && (
-          <HeaderBucketBtn>
+          <HeaderBucketBtn
+            onClick={() => navigate('/worker/cart', { replace: true })}
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
               <path
                 fill="currentColor"

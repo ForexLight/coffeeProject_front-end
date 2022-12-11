@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 import { heights } from '../../styled/css.vars'
 
-const WorkerWrapper = styled.div`
+const GoodsWrapper = styled.div`
   background-color: ${(props) => props.theme.colors.main};
   color: ${(props) => props.theme.colors.text};
   height: ${heights.withoutHeader};
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 `
 const GoodsHeader = styled.h2`
   margin: 0;
@@ -31,6 +30,7 @@ const GoodsItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: none;
   margin: 10px 5px;
   a {
     text-decoration: none;
@@ -64,7 +64,7 @@ const GoodsImg = styled.div<{ img: any }>`
 `
 
 export {
-  WorkerWrapper,
+  GoodsWrapper,
   GoodsHeader,
   GoodsSection,
   GoodsItemWrapper,

@@ -6,10 +6,19 @@ import {
   GoodsImg,
   GoodsItemWrapper,
 } from '../goodsPage.style'
+type GoodsItemType = Goods & {
+  onClick: (item: Goods) => void
+}
 
-const GoodsItem = ({ id, name, img, price }: Goods) => {
+const GoodsItem = ({ id, name, img, price, onClick }: GoodsItemType) => {
+  const item = {
+    id,
+    name,
+    img,
+    price,
+  }
   return (
-    <GoodsItemWrapper>
+    <GoodsItemWrapper onClick={() => onClick(item)}>
       <GoodsImg img={img}></GoodsImg>
       <GoodsData>
         <h3>{name}</h3>

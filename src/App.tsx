@@ -24,7 +24,6 @@ function App() {
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : myTheme}>
       <GlobalStyle />
-      <Header />
       <RouterProvider router={router} />
     </ThemeProvider>
   )

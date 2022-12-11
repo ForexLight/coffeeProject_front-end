@@ -1,32 +1,36 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useAppSelector } from '../../hooks/redux_hooks'
-import { Goods } from '../../store/slices/goodsSlice'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux_hooks'
 import GoodsItem from './components/GoodsItem'
-import styled from 'styled-components'
-import { heights } from '../../styled/css.vars'
-import { GoodsHeader, GoodsSection } from './goodsPage.style'
+import { GoodsHeader, GoodsSection, GoodsWrapper } from './goodsPage.style'
 import usePagination from '../../hooks/usePagination'
 import PaginationController from '../pagination/PaginationController'
-
-const GoodsPageWrapper = styled.div`
-  background-color: ${(props) => props.theme.colors.main};
-  color: ${(props) => props.theme.colors.text};
-  height: ${heights.withoutHeader};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
+import { Goods } from '../../store/slices/goodsSlice'
+import { addCartItems, cartItem } from '../../store/slices/cartSlice'
 
 const GoodsPage = () => {
   const params = String(useParams().value)
   let data = useAppSelector((state) => state.goods)
   const resArr: JSX.Element[] = []
+  const dispatcher = useAppDispatch()
+
+  const goodsClickHandler = (item: Goods | cartItem) => {
+    dispatcher(addCartItems(item))
+  }
   const res =
     params != undefined &&
     useAppSelector((state) => state.goods)[params as keyof typeof data].map(
       (i) => {
-        resArr.push(<GoodsItem key={i.id} {...i} />)
+        resArr.push(
+          <GoodsItem
+            key={i.id}
+            img={i.img}
+            price={i.price}
+            name={i.name}
+            id={i.id}
+            onClick={goodsClickHandler}
+          />,
+        )
       },
     )
   const {
@@ -43,7 +47,7 @@ const GoodsPage = () => {
   })
 
   return (
-    <GoodsPageWrapper>
+    <GoodsWrapper>
       <GoodsHeader>{params}</GoodsHeader>
       <GoodsSection>
         {resArr.slice(firstContentIndex, lastContentIndex)}
@@ -55,7 +59,7 @@ const GoodsPage = () => {
         setPage={setPage}
         totalPages={totalPages}
       />
-    </GoodsPageWrapper>
+    </GoodsWrapper>
   )
 }
 

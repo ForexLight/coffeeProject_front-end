@@ -6,6 +6,7 @@ import { createBrowserRouter, redirect } from 'react-router-dom'
 import MainDistributor from './MainDistributor/MainDistributor'
 import { useAppSelector } from '../hooks/redux_hooks'
 import { CartPage } from '../components/cartPage'
+import { Header } from '../components/layout/Header'
 
 const router = createBrowserRouter([
   {
@@ -14,19 +15,39 @@ const router = createBrowserRouter([
   },
   {
     path: 'auth',
-    element: <Login />,
+    element: (
+      <>
+        <Header />
+        <WorkerPage />
+      </>
+    ),
   },
   {
     path: 'worker',
-    element: <WorkerPage />,
+    element: (
+      <>
+        <Header />
+        <WorkerPage />
+      </>
+    ),
   },
   {
     path: 'worker/:value',
-    element: <GoodsPage />,
+    element: (
+      <>
+        <Header />
+        <GoodsPage />
+      </>
+    ),
   },
   {
     path: 'worker/cart',
-    element: <CartPage />,
+    element: (
+      <>
+        <Header />
+        <CartPage />
+      </>
+    ),
   },
 ])
 export default router

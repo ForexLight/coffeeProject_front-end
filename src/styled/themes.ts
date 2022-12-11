@@ -7,7 +7,7 @@ const myTheme: DefaultTheme = {
     main: '#0E5E6F',
     secondary: '#F2DEBA',
     btn: '#3A8891',
-    changeThemeBtn: '#3A8891',
+    changeThemeBtn: 'rgba(58,136,145,0.51)',
   },
 }
 
@@ -17,7 +17,7 @@ const darkTheme: DefaultTheme = {
     text: '#EEEEEE',
     main: '#222831',
     secondary: '#393E46',
-    btn: '#00ADB5',
+    btn: '#3A8891',
     changeThemeBtn: '#393E46',
   },
 }

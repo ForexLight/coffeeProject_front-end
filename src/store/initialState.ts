@@ -42,7 +42,7 @@ const categories = [
 const initialGoods = {
   bakery: [
     {
-      id: 0,
+      id: 1,
       name: '',
       price: 5,
       img: 'https://cdn-icons-png.flaticon.com/512/1069/1069102.png',
