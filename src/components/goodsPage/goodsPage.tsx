@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux_hooks'
 import GoodsItem from './components/GoodsItem'
 import { GoodsHeader, GoodsSection, GoodsWrapper } from './goodsPage.style'
@@ -7,13 +7,14 @@ import usePagination from '../../hooks/usePagination'
 import PaginationController from '../pagination/PaginationController'
 import { Goods } from '../../store/slices/goodsSlice'
 import { addCartItems, cartItem } from '../../store/slices/cartSlice'
+import { BackButton } from '../../styled/sharedComponents'
 
 const GoodsPage = () => {
   const params = String(useParams().value)
   let data = useAppSelector((state) => state.goods)
   const resArr: JSX.Element[] = []
   const dispatcher = useAppDispatch()
-
+    const navigator = useNavigate()
   const goodsClickHandler = (item: Goods | cartItem) => {
     dispatcher(addCartItems(item))
   }
@@ -48,6 +49,7 @@ const GoodsPage = () => {
 
   return (
     <GoodsWrapper>
+        <BackButton onClick={() => navigator(-1)}>Back</BackButton>
       <GoodsHeader>{params}</GoodsHeader>
       <GoodsSection>
         {resArr.slice(firstContentIndex, lastContentIndex)}

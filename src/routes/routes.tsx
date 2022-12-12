@@ -1,10 +1,8 @@
 import { Login } from '../components/login'
 import { WorkerPage } from '../components/workerPage'
 import { GoodsPage } from '../components/goodsPage'
-import App from '../App'
-import { createBrowserRouter, redirect } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 import MainDistributor from './MainDistributor/MainDistributor'
-import { useAppSelector } from '../hooks/redux_hooks'
 import { CartPage } from '../components/cartPage'
 import { Header } from '../components/layout/Header'
 
@@ -18,7 +16,7 @@ const router = createBrowserRouter([
     element: (
       <>
         <Header />
-        <WorkerPage />
+        <Login />
       </>
     ),
   },

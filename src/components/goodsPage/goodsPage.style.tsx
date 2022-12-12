@@ -10,20 +10,22 @@ const GoodsWrapper = styled.div`
   align-items: center;
 `
 const GoodsHeader = styled.h2`
+  padding-top: 5px;
   margin: 0;
 `
 
 const GoodsSection = styled.section`
   width: 100%;
-  height: 85%;
+  max-height: 85%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  overflow: scroll;
 `
 
 const GoodsItemWrapper = styled.div`
-  height: 30%;
+  height: 23vh;
   width: 45%;
   border-radius: ${(props) => props.theme.borderRadius};
   background-color: #fff;

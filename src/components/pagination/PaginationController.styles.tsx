@@ -6,12 +6,12 @@ export type PageIndicatorType = {
 
 const PaginationContainer = styled.nav`
   position: absolute;
-  bottom: 15px;
+  bottom: 10px;
 `
 const PagesController = styled.ul`
   text-decoration: none;
   list-style: none;
-  padding: 0;
+  padding: 0 5px 0 0;
   margin: 0;
   display: flex;
   justify-content: center;
