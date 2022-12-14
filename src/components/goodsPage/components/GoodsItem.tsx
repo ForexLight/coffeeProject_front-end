@@ -1,25 +1,38 @@
 import React from 'react'
-import { Goods } from '../../../store/slices/goodsSlice'
 import {
   GoodsData,
   GoodsHeader,
   GoodsImg,
   GoodsItemWrapper,
 } from '../goodsPage.style'
-type GoodsItemType = Goods & {
-  onClick: (item: Goods) => void
+import { GoodsReceived } from '../../../API/service'
+
+type GoodsItemType = GoodsReceived & {
+  onClick: (item: GoodsReceived) => void
 }
 
-const GoodsItem = ({ id, name, img, price, onClick }: GoodsItemType) => {
+const GoodsItem = ({
+  id,
+  name,
+  img,
+  price,
+  createdAt,
+  updatedAt,
+  category,
+  onClick,
+}: GoodsItemType) => {
   const item = {
     id,
     name,
     img,
     price,
+    createdAt,
+    updatedAt,
+    category,
   }
   return (
     <GoodsItemWrapper onClick={() => onClick(item)}>
-      <GoodsImg img={img}></GoodsImg>
+      <GoodsImg img={`http://localhost:7000/${img}`}></GoodsImg>
       <GoodsData>
         <h3>{name}</h3>
         <span>{price} ₴</span>

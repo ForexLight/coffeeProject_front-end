@@ -1,28 +1,38 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { initialGoods } from '../initialState'
+import { GoodsReceived } from '../../API/service'
 
-export type cartItem = {
-  id: number
-  price: number
-  name: string
-  img: string
+export type cartItemWithCount = GoodsReceived & {
+  count: number
 }
 
-const initialState: cartItem[] = []
+const initialState: cartItemWithCount[] = []
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addCartItems: (state: cartItem[], action: PayloadAction<cartItem>) => {
-      state.push(action.payload)
+    addCartItems: (
+      state: cartItemWithCount[],
+      action: PayloadAction<GoodsReceived>,
+    ) => {
+      const isExist = state.find((i) => i.id === action.payload.id)
+      if (isExist) {
+        isExist.count++
+      }
+      if (!isExist) {
+        state.push({ ...action.payload, count: 1 })
+      }
     },
-    removeCartItem: (state: cartItem[], action: PayloadAction<number>) => {
+    removeCartItem: (
+      state: cartItemWithCount[],
+      action: PayloadAction<number>,
+    ) => {
       const deleteIndex = state.findIndex((item) => item.id === action.payload)
       console.log(deleteIndex)
       state.splice(deleteIndex, 1)
     },
-    clearAllCart: (state: cartItem[], action: PayloadAction<boolean>) => {
+    clearAllCart: (state: cartItemWithCount[]) => {
       state.length = 0
     },
   },

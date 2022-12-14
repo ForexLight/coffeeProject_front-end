@@ -1,32 +1,36 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
-import { heights } from '../../styled/css.vars'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux_hooks'
 import {
   BackButton,
   CartHeader,
-  CartItemWrapper,
   CartSection,
   CartWrapper,
   OrderButton,
   SummaryInfo,
 } from './CartPage.styles'
-import CartItem from './CartItem'
-import { removeCartItem } from '../../store/slices/cartSlice'
+import CartItem from './components/CartItem'
+import { clearAllCart, removeCartItem } from '../../store/slices/cartSlice'
+import Services from '../../API/service'
 
 const CartPage = () => {
   const navigate = useNavigate()
   const cart = useAppSelector((state) => state.cart)
   const dispatcher = useAppDispatch()
   let summaryPrice: number = 0
-  cart.forEach((i) => (summaryPrice += i.price))
+  const service = new Services()
+  cart.forEach((i) => (summaryPrice += i.price * i.count))
+
+  localStorage.setItem('cart', JSON.stringify(cart))
 
   const onDelete = (deleteId: number) => {
-    console.log(deleteId)
     dispatcher(removeCartItem(deleteId))
   }
-  console.log(cart)
+
+  const onCreateOrder = async () => {
+    await service.postOrder({ orderItems: JSON.stringify(cart) })
+    dispatcher(clearAllCart())
+  }
   return (
     <CartWrapper>
       <BackButton
@@ -46,11 +50,17 @@ const CartPage = () => {
             price={i.price}
             img={i.img}
             id={i.id}
+            createdAt={i.createdAt}
+            updatedAt={i.updatedAt}
+            category={i.category}
             onClick={onDelete}
+            count={i.count}
           />
         ))}
       </CartSection>
-      <OrderButton active={cart.length > 0}>Place order</OrderButton>
+      <OrderButton active={cart.length > 0} onClick={onCreateOrder}>
+        Place order
+      </OrderButton>
     </CartWrapper>
   )
 }

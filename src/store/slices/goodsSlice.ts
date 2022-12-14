@@ -1,28 +1,37 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import {
+  createAsyncThunk,
+  createSlice,
+  type PayloadAction,
+} from '@reduxjs/toolkit'
 import { initialGoods } from '../initialState'
+import api from '../../API/api'
+import Services, { GoodsReceived } from '../../API/service'
+import { retry } from '@reduxjs/toolkit/query'
 
-type Goods = {
-  id: number
-  name: string
-  price: number
-  img: string
-}
+const service = new Services()
+
 type AllGoodsObj = {
-  bakery: Goods[]
-  coffee: Goods[]
-  dessert: Goods[]
-  drinks: Goods[]
+  goods: GoodsReceived[]
 }
 
-const initialState: AllGoodsObj = initialGoods
+export const fetchGoods = createAsyncThunk('goods/fetchAll', async () => {
+  return (await service.getGoods()) as GoodsReceived[]
+})
+
+const initialState: AllGoodsObj = {
+  goods: [],
+}
 export const goodsSlice = createSlice({
   name: 'goods',
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchGoods.fulfilled, (state, action) => {
+      state.goods = action.payload
+    })
+  },
 })
 
 export const {} = goodsSlice.actions
 
 export default goodsSlice.reducer
-
-export type { Goods }
