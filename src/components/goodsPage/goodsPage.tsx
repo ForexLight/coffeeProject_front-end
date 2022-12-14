@@ -15,7 +15,7 @@ const GoodsPage = () => {
   const params = String(useParams().value)
   let data = useAppSelector((state) => state.goods)
   const resArr: JSX.Element[] = []
-  const dispatcher = useAppDispatch<AppDispatch>()
+  const dispatcher = useAppDispatch()
   const navigator = useNavigate()
 
   useEffect(() => {

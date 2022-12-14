@@ -11,7 +11,7 @@ import { goodsSlice } from './goodsSlice'
 
 const service = new Services()
 
-type AllOrdersState = {
+export type AllOrdersState = {
   orders: OrderReceived[]
   day: OrderReceived[]
   week: OrderReceived[]
@@ -63,6 +63,6 @@ export const ordersSlice = createSlice({
   },
 })
 
-export const {} = goodsSlice.actions
+export const {} = ordersSlice.actions
 
-export default goodsSlice.reducer
+export default ordersSlice.reducer

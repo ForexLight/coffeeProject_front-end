@@ -100,3 +100,8 @@ export default class Services {
 }
 
 const service = new Services()
+
+const data = async () => {
+  console.log(service.getWeekOrders())
+}
+data()
