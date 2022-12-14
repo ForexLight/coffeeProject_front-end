@@ -9,12 +9,6 @@ import {
   fetchAllUsers,
   removeUser,
 } from '../../store/slices/allUsersSlice'
-import { UserDetails } from '../../API/service'
-import jwtDecode from 'jwt-decode'
-import { Role, UserState } from '../../store/slices/types/types'
-import { updateUser } from '../../store/slices/userSlice'
-import { updateUserRole } from '../../store/slices/userRoleSlice'
-import { updateStatus } from '../../store/slices/authSlice'
 
 const Wrapper = styled.section`
   background-color: ${(props) => props.theme.colors.main};

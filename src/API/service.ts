@@ -95,10 +95,8 @@ export default class Services {
   async getGoods(): Promise<GoodsReceived[]> {
     return await api.get('goods').then((response) => response.data)
   }
-  async deleteGoods(data: DeleteGoods): Promise<any> {
-    return await api
-      .delete(`goods/${data.id}`)
-      .then((response) => response.data)
+  async deleteGoods(id: number): Promise<any> {
+    return await api.delete(`goods/${id}`).then((response) => response.data)
   }
 }
 
