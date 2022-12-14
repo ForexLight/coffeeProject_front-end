@@ -1,13 +1,13 @@
 import api from './api'
 
-interface UserDetails {
+export interface UserDetails {
   email: string
   password: string
 }
-interface Token {
+export interface Token {
   token: string
 }
-interface Role {
+export interface Role {
   id: number
   description: string
   value: string
@@ -26,14 +26,14 @@ interface OrderPending {
   orderItems: string
 }
 
-interface OrderReceived {
+export interface OrderReceived {
   id: number
   createdAt: string
   orderItems: string
   updatedAt: string
 }
 
-interface GoodCreateData {
+export interface GoodCreateData {
   name: string
   price: number
   category: string
@@ -48,7 +48,7 @@ export interface GoodsReceived {
   createdAt: string
 }
 
-interface DeleteOrder {
+export interface DeleteGoods {
   id: number
 }
 export default class Services {
@@ -82,7 +82,9 @@ export default class Services {
   async getGoods(): Promise<GoodsReceived[]> {
     return await api.get('goods').then((response) => response.data)
   }
-  async deleteGoods(data: any): Promise<any> {
-    return await api.delete('goods', data).then((response) => response.data)
+  async deleteGoods(data: DeleteGoods): Promise<any> {
+    return await api
+      .delete(`goods/${data.id}`)
+      .then((response) => response.data)
   }
 }
