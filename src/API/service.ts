@@ -72,6 +72,16 @@ export default class Services {
     return await api.get('orders').then((response) => response.data)
   }
 
+  async getDayOrders(): Promise<OrderReceived[]> {
+    return await api.get('orders/day').then((response) => response.data)
+  }
+  async getWeekOrders(): Promise<OrderReceived[]> {
+    return await api.get('orders/week').then((response) => response.data)
+  }
+  async getMonthOrders(): Promise<OrderReceived[]> {
+    return await api.get('orders/month').then((response) => response.data)
+  }
+
   async addGoods(data: FormData): Promise<GoodsReceived> {
     return await api
       .post('goods', data, {
@@ -88,3 +98,5 @@ export default class Services {
       .then((response) => response.data)
   }
 }
+
+const service = new Services()

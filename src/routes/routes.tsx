@@ -5,6 +5,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import MainDistributor from './MainDistributor/MainDistributor'
 import { CartPage } from '../components/cartPage'
 import { Header } from '../components/layout/Header'
+import AdminPage from '../components/adminPage/AdminPage'
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,15 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Login />
+      </>
+    ),
+  },
+  {
+    path: 'admin',
+    element: (
+      <>
+        <Header />
+        <AdminPage />
       </>
     ),
   },
