@@ -6,6 +6,7 @@ import MainDistributor from './MainDistributor/MainDistributor'
 import { CartPage } from '../components/cartPage'
 import { Header } from '../components/layout/Header'
 import AdminPage from '../components/adminPage/AdminPage'
+import UserCreatePage from '../components/userCreatePage/userCreatePage'
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,15 @@ const router = createBrowserRouter([
       <>
         <Header />
         <AdminPage />
+      </>
+    ),
+  },
+  {
+    path: 'admin/users',
+    element: (
+      <>
+        <Header />
+        <UserCreatePage />
       </>
     ),
   },

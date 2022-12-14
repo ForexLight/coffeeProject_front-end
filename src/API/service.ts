@@ -13,7 +13,7 @@ export interface Role {
   value: string
   createdAt: string
 }
-interface UserData {
+export interface UserData {
   id: number
   email: string
   password: string
@@ -52,13 +52,16 @@ export interface DeleteGoods {
   id: number
 }
 export default class Services {
-  async getUsers(): Promise<UserData> {
+  async getUsers(): Promise<UserData[]> {
     return api.get('users').then((response) => response.data)
+  }
+  async deleteUsers(id: number): Promise<any> {
+    return api.delete(`users/${id}`).then((res) => res.data)
   }
   async login(data: UserDetails): Promise<Token> {
     return api.post('auth/login', data).then((response) => response.data)
   }
-  async registration(data: UserDetails): Promise<Token> {
+  async registration(data: UserDetails): Promise<UserData> {
     return await api
       .post('auth/registration', data)
       .then((response) => response.data)
@@ -102,6 +105,6 @@ export default class Services {
 const service = new Services()
 
 const data = async () => {
-  console.log(service.getWeekOrders())
+  console.log(service.getUsers())
 }
 data()

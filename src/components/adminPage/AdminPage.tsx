@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { AdminWrapper } from './AdminPage.styles'
+import { AdminWrapper, CreateGoodsBtn, CreateUserBtn } from './AdminPage.styles'
 import IncomeComponent from './components/IncomeComponent'
 import {
   fetchDayOrders,
@@ -7,7 +7,6 @@ import {
   fetchWeekOrders,
 } from '../../store/slices/ordersSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux_hooks'
-import { stat } from 'fs'
 
 const AdminPage = () => {
   const dispatch = useAppDispatch()
@@ -21,6 +20,8 @@ const AdminPage = () => {
   return (
     <AdminWrapper>
       <IncomeComponent />
+      <CreateUserBtn>Create user</CreateUserBtn>
+      <CreateGoodsBtn>Create goods</CreateGoodsBtn>
     </AdminWrapper>
   )
 }

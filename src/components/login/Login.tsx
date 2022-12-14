@@ -31,6 +31,7 @@ const Login = (): JSX.Element => {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors, isValid },
   } = useForm({
     mode: 'onBlur',

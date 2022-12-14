@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux_hooks'
-import OrdersSlice, {
-  AllOrdersState,
-  fetchDayOrders,
-} from '../../../store/slices/ordersSlice'
+import { useAppSelector } from '../../../hooks/redux_hooks'
 
 const IncomeComponentWrapper = styled.div`
   background-color: ${(props) => props.theme.colors.changeThemeBtn};
@@ -46,38 +42,40 @@ const TimeSelector = styled.button`
 const IncomeComponent = () => {
   const [timeSelector, setTimeSelector] = useState<string>('1')
   const orders = useAppSelector((state) => state.orders)
-  let valueDay = orders.day
-    .map((i) => JSON.parse(i.orderItems))[0]
-    ?.reduce(
-      (
-        a: { price: number; count: number },
-        b: { price: number; count: number },
-      ) => a.price * a.count + b.price * b.count,
-    )
-  let valueWeek = orders.week
-    .map((i) => JSON.parse(i.orderItems))[0]
-    ?.reduce(
-      (
-        a: { price: number; count: number },
-        b: { price: number; count: number },
-      ) => a.price * a.count + b.price * b.count,
-    )
-  let valueMonth = orders.month
-    .map((i) => JSON.parse(i.orderItems))[0]
-    ?.reduce(
-      (
-        a: { price: number; count: number },
-        b: { price: number; count: number },
-      ) => a.price * a.count + b.price * b.count,
-    )
+  let valueDay = orders.day.map((i) => JSON.parse(i.orderItems)).flat()
+
+  let valueWeek = orders.week.map((i) => JSON.parse(i.orderItems)).flat()
+
+  let valueMonth = orders.month.map((i) => JSON.parse(i.orderItems)).flat()
+
   const getValue = () => {
     switch (timeSelector) {
-      case '1':
-        return `Income for today is ${valueDay} ₴`
-      case '2':
-        return `Income for this week is ${valueWeek} ₴`
-      case '3':
-        return `Income for this month is ${valueMonth} ₴`
+      case '1': {
+        let sum: number = 0
+        valueDay.forEach((i) => {
+          console.log(parseInt(i.price) * i.count)
+          sum = sum + i.price * i.count
+        })
+        return `Income for today is ${sum} ₴`
+      }
+      case '2': {
+        let sum: number = 0
+        valueWeek.forEach((i) => {
+          console.log(parseInt(i.price) * i.count)
+          sum = sum + i.price * i.count
+        })
+        return `Income for this week is ${sum} ₴`
+      }
+      case '3': {
+        let sum: number = 0
+        valueMonth.forEach((i) => {
+          console.log(parseInt(i.price) * i.count)
+          sum = sum + i.price * i.count
+        })
+
+        return `Income for this month is ${sum} ₴`
+      }
+
       default:
         return 1
     }
@@ -93,7 +91,7 @@ const IncomeComponent = () => {
         <TimeSelector onClick={() => setTimeSelector('3')}>Mount</TimeSelector>
       </ButtonContainer>
       <IncomeData>
-        <h3>{getValue()}</h3>
+        <h3>{String(getValue())}</h3>
       </IncomeData>
     </IncomeComponentWrapper>
   )

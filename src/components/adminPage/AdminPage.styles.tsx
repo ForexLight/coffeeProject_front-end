@@ -10,5 +10,26 @@ const AdminWrapper = styled.div`
   align-items: center;
   position: relative;
 `
-
-export { AdminWrapper }
+const CreateUserBtn = styled.button`
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 20px;
+  height: 100px;
+  width: 95%;
+  border-radius: ${(props) => props.theme.borderRadius};
+  color: inherit;
+  background-color: ${(props) => props.theme.colors.btn};
+  border: none;
+`
+const CreateGoodsBtn = styled.button`
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 20px;
+  height: 100px;
+  width: 95%;
+  border-radius: ${(props) => props.theme.borderRadius};
+  color: inherit;
+  background-color: ${(props) => props.theme.colors.btn};
+  border: none;
+`
+export { AdminWrapper, CreateUserBtn, CreateGoodsBtn }
